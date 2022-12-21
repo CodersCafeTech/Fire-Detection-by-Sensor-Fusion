@@ -4,7 +4,6 @@ In order to make the right decision in a fire situation, a fire detection system
 Existing devices, which use rule-based algorithms or image-based machine learning can hardly adapt to the changes in the environment because of their static features.
 
 In this project, we develop a device that can detect fire by means of sensor fusion and machine learning.  We will collect the data from the sensors such as temperature, humidity and pressure in various fire situations and extract features to build a machine-learning model to detect the actual fire events. 
-After the detection, we will give push notifications to the registered users.   
 
 # Data collection   
 To make this project into reality we are using Arduino Nano 33 BLE sense with the Edge Impulse. For the data collection there exist two ways either through the Edge Impulse CLI or through the web browser. 
@@ -15,10 +14,10 @@ This is our data collection settings. Here we used environmental sensor(temperat
 ![Data collection.jpg](https://usercdn.edgeimpulse.com/project160533/11ab431b0d14e003efc6283de66ea4c55e7d3fe4062372f33d799d8ac7a4f063)
 We have only two classes in this project **"No Fire"** and **Fire**. For the **No Fire** case, we just collected the data at the different points in the room. For capturing the **Fire** data, we actually build a fire camp like setup in my backyard.To make our model robust we collected the data at different points in that area.
 ![Fire.jpg](https://usercdn.edgeimpulse.com/project160533/17c4f4f3882f9df6f6817b17baf2061d7640e7b412f0e1d43cf8eef07d2d2649)
-The Arduino nano 33 BLE sense can 
+
 13 minutes of data are collected for two labels and split it between the testing and the training. The Edge Impulse has a tool called ** Data Explorer ** which gives you a one-look overview of your complete dataset. 
 ![Data Explorer.jpg](https://usercdn.edgeimpulse.com/project160533/2fa9c857229c75e9a82c2207a08e264f57e88ae7a37ce66bff8881f4dfdd8fce)
-This tool is actually very useful for the object detection based and audio projects.
+This tool is actually very useful for the object detection and audio projects.
 
 # Impulse Design  
 This is our machine learning pipeline known as Impulse.    
@@ -29,9 +28,9 @@ These are our spectral analysis parameters of **Filter** and **Spectral power**.
 The below image shows the generated features for the collected data, the data is well distinguishable. As you can notice in the case of ** Fire ** event, there is actually three clusters of data and it shows the parameters is changing at different points.
 ![feature explorer.jpg](https://usercdn.edgeimpulse.com/project160533/e4f3bf8c1a596fdc68a5511e9962e3ddc1f26fe20e641b73a73374c831b72f60)   
 After sucessfully extracting the features from the DSP block, it's time to train the machine learning model.  
-These are our Neural Network settings and architecture which works very for our data.
+These are our Neural Network settings and architecture which works very wll for our data.
 ![NN network settings and architecture.jpg](https://usercdn.edgeimpulse.com/project160533/2a74f8c66755d30da142a903e5a54dcb1eab74a1e73d9db0cd4bd58dde3bd97d)   
-Please read this [guide](https://docs.edgeimpulse.com/docs/edge-impulse-studio/learning-blocks/classification) to know about these affects your model.
+Please read this [guide](https://docs.edgeimpulse.com/docs/edge-impulse-studio/learning-blocks/classification) to know about how these things affects your model.
 After training we hit 98% validation accuracy for the data, that seems to be cool. 
 ![training output.jpg](https://usercdn.edgeimpulse.com/project160533/f0e0bf461f4b3c610ddd15efc696eea61d97a1210277ed571b9089fb28e324eb)  
 The confusion matrix is a good tool for evaluating the model, as you can see below 2.1% is missclassified as ** No Fire **.
@@ -47,7 +46,7 @@ The confusion matrix and feature explorer is also present here to show how our m
 Now let's test the model with some real-world data. For that we need to move onto the Live Classification tab and connected our arduino using WebUSB.
 ![No fire 1.jpg](https://usercdn.edgeimpulse.com/project160533/44afb8046e8733f915aa8a7a41b56d88ead4cd3a5f2cadd400ba60f079637cd3)   
 
-The above sample recorded the when there is no fire and below sample recorded when there is fire.     
+The above sample recorded the when there is no fire and below sample is recorded when there is fire.     
 
 ![Fire_Classification.jpg](https://usercdn.edgeimpulse.com/project160533/427f52db6e5f2fc17153c4975415b7a450b0e9ed160df8a377902d6bea8f4c38)
 Real-world data of **No Fire ** and ** Fire ** events are well classified. So our model is ready for deployment
