@@ -61,6 +61,6 @@ We deployed our model in Arduino Nano 33 BLE sense as an arduino library.
 ![deploy.jpg](https://usercdn.edgeimpulse.com/project160533/4cbae05f8bc68a29244302f0a91e755d373fcfe72a805d5e26026ee512b05ae5)
 
 # Code   
-The entire assets for this project are given in this [GitHub repository]().
+The entire assets for this project are given in this [GitHub repository](https://github.com/CodersCafeTech/Fire-Detection-by-Sensor-Fusion).
 
 
